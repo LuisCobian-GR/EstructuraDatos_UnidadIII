@@ -13,7 +13,7 @@ public class Tabla {
         int[] arreglo2 = {4,3,2,1,2}; 
         int matriz[][] = new int[3][4]; 
         int[] matriz2[] = {
-                            {2,4,2},
+                            {2,4,2,6}, 
                             {1,2,3,5,3,2}
                           };
         System.out.println("Valor " + 
