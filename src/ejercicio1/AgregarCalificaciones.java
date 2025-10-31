@@ -5,6 +5,7 @@
 package ejercicio1;
 
 import ejercicio1.datos.KardexDatos;
+import ejercicio1.datos.Materias;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
@@ -25,17 +26,17 @@ public class AgregarCalificaciones extends javax.swing.JDialog {
     public AgregarCalificaciones(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        indexModificar = KardexDatos.index; 
+        //indexModificar = KardexDatos.index; 
     }
     
     public AgregarCalificaciones(java.awt.Frame parent, boolean modal, 
             int indexUpdate){
         this(parent, modal);
         indexModificar = indexUpdate;
-        System.out.println("Datos: " + Arrays.toString(KardexDatos.datos[indexModificar]));
-        txtMateria.setText(KardexDatos.datos[indexModificar][0]);
-        txtSemestre.setText(KardexDatos.datos[indexModificar][1]);
-        txtCalificacion.setText(KardexDatos.datos[indexModificar][2]);
+//        System.out.println("Datos: " + Arrays.toString(KardexDatos.datos[indexModificar]));
+//        txtMateria.setText(KardexDatos.datos[indexModificar][0]);
+//        txtSemestre.setText(KardexDatos.datos[indexModificar][1]);
+//        txtCalificacion.setText(KardexDatos.datos[indexModificar][2]);
     }
 
     /**
@@ -170,10 +171,12 @@ public class AgregarCalificaciones extends javax.swing.JDialog {
             return; 
         }
         
-        KardexDatos.datos[indexModificar][0] = materia; 
-        KardexDatos.datos[indexModificar][1] = semestre;
-        KardexDatos.datos[indexModificar][2] = calificaciones;
-        if(!updated) KardexDatos.index ++; 
+        var materiaObj = new Materias(materia,Integer.parseInt(semestre),
+                               Integer.parseInt(calificaciones) ); 
+        
+        materiaObj.setNombre("");
+        KardexDatos.listasMaterias.add(materiaObj); 
+        
         this.dispose();
     }//GEN-LAST:event_btnGuardarActionPerformed
 

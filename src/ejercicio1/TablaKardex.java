@@ -1,6 +1,7 @@
 package ejercicio1;
 
 import ejercicio1.datos.KardexDatos;
+import ejercicio1.datos.Materias;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -138,7 +139,8 @@ public class TablaKardex extends javax.swing.JFrame {
         int index = tablaDatos.getSelectedRow(); 
         if(index>=0){
             AgregarCalificaciones dialog = new 
-                                   AgregarCalificaciones(this,true, index); 
+                                   AgregarCalificaciones(this,
+                                           true, index); 
         dialog.setVisible(true);
         actualizarTabla();
         }
@@ -151,8 +153,17 @@ public class TablaKardex extends javax.swing.JFrame {
     private void actualizarTabla() {
         String columnas[] = {"Materia", "Semestre", "Calificación"}; 
         
+        String matrizDatos[][] = new 
+                String[KardexDatos.listasMaterias.size()][];
+        
+        int index = 0; 
+        for(Materias materia: KardexDatos.listasMaterias){
+            matrizDatos[index] = materia.aArreglo(); 
+            index ++; 
+        }
+        
         DefaultTableModel model = 
-                new DefaultTableModel(KardexDatos.datos, columnas); 
+                new DefaultTableModel(matrizDatos, columnas); 
         tablaDatos.setModel(model);
         
         /// Acomodo las columnas
@@ -180,20 +191,13 @@ public class TablaKardex extends javax.swing.JFrame {
      */
     private float calculaPromedio(){
         float promedio = 0f; 
-        int contador = 0; 
-        for(String[] registro: KardexDatos.datos ){
-            if(registro[2]!=null){
-                float valor = 0f;
-                try{
-                    valor = Float.parseFloat(registro[2]);
-                    promedio +=valor; 
-                    contador ++; 
-                }catch(Exception e){
-                    valor =0; 
-                }
-            }
+        int contador = KardexDatos.listasMaterias.size(); 
+        for(Materias materia: KardexDatos.listasMaterias ){
+            promedio += materia.getCalificacion();        
         }
-        promedio = contador>0? promedio/contador : 0; 
+        promedio = contador >0 
+                 ? promedio/contador 
+                : 0; 
         return promedio; 
     }
     

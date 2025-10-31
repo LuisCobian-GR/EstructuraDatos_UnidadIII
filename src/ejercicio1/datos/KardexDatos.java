@@ -1,5 +1,8 @@
 package ejercicio1.datos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *Esta clase me permite mantener la informaición 
  * entre las ventanas 
@@ -7,8 +10,9 @@ package ejercicio1.datos;
  * 14 de octubre 
  */
 public class KardexDatos {
-    
-    public static String[][] datos = 
-            new String[10][3];
-    public static int index = 0; // para saber cuantos llevo
+
+    public static ArrayList<Materias> listasMaterias = new 
+            ArrayList<>(); 
+  
 }
+
